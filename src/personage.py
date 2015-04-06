@@ -2,45 +2,73 @@
 
 import random
 
-class Personage(): # общие персонажи
+# Золото
+class Gold(object):
+	def __init__(self, gold = 0):
+		self.gold = gold
+	# оплата чего-либо
+	def payment(self, value):
+		if value > self.gold:
+			return "У Вас недостаточно средств"
+		else:
+			self.gold -= value
+			return self.gold
+	# приход золота
+	def profit(self, value):
+		self.gold += value
+		return self.gold
+
+# Персонаж
+class Personage(Gold):
 
 	def __init__(self, name, skill, damage, gold = 0): # начальные значения
+		Gold.__init__(self, gold)
 		self.name = name
 		self.skill = skill
 		self.damage = damage
-		self.gold = gold
 
 	def fight(self):
 		pass
-		
-class Protagonist(Personage): # главный герой
-
-	def __init__(self, name, skill, damage, gold, fortune, **spell): # необходимо добавить заклятия
-		Personage.__init__(self, name, damage, skill, gold)
-		self.fortune = fortune
-		self.spell = spell
-		self.bag = []
-		self.flask = 2 # фляга, из которой можно пополнить выносливость 2 раза
-		
+# Заплечный мешок
+class Bag(object):
+	
+	bag = [] # Начальное значение
+    # положить вещь
 	def bag_to_place(self, artefact):
 		if len(self.bag) <= 7:
 			self.bag.append(artefact)
-			return self.bag
 		else:
 			print("нужно что-то выложить")
-			return self.bag
-		
+		return self.bag
+	# выложить вещь	
 	def bag_shell_out(self, artefact):
 		self.bag.remove(artefact)
 		return self.bag
-		
+# Фляга
+class Flask(object):
+	
+	flask = 2 # пополнить выносливость - 2 раза
+	# отпить из флги
 	def flask_out(self):
 		if self.flask > 0:
 			self.flask -= 1
 			self.damage += 2
 		else:
-			print("фляга пуста.")
-			
+			self.flask = "фляга пуста"
+		return self.flask
+
+# главный герой														
+class Protagonist(Personage, Bag, Flask): 
+
+	def __init__(self, name, skill, damage, gold, fortune, **spell): # необходимо добавить заклятия
+		Personage.__init__(self, name, damage, skill, gold)
+		self.fortune = fortune
+		self.spell = spell
+
+class Game(object):
+	pass
+		
+					
 def fight(protagonist, *args):
 	hero = protagonist
 	list_rival = list(args) # список передаваемых экземпляров
@@ -106,6 +134,7 @@ if __name__ == "__main__":
 	print("%s:\n мастерство - %d,\n выносливость - %d,\n удача - %d" % (protagonist.name,  
 	                            protagonist.skill, protagonist.damage, protagonist.fortune))
 	print(protagonist.spell)
+	print(protagonist.profit(3))
 	protagonist.bag_to_place("перо аиста")
 	print(protagonist.bag)
 	protagonist.bag_shell_out("перо аиста")
