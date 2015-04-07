@@ -1,4 +1,5 @@
-__author__ = 'iEC'
+__author__ = 'Evgeny Pyanykh'
+__email__ = 'bpteam22@gmail.com'
 
 from abc import ABCMeta, abstractproperty  # , abstractmethod
 
@@ -12,6 +13,10 @@ class Thing(object):
     size = 1
     count = 1
     max_stack = 1
+
+    def __init__(self, **attributes):
+        for name in attributes.keys():
+            self.__setattr__(self, name, attributes.get(name))
 
     def get_size(self):
         return self.size

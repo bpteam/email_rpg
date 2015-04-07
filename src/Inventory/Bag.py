@@ -1,6 +1,7 @@
-__author__ = 'iEC'
+__author__ = 'Evgeny Pyanykh'
+__email__ = 'bpteam22@gmail.com'
 
-import src.Inventory.Thing as Thing
+from src.Inventory.Thing import Thing
 
 
 class Bag(Thing):
@@ -9,19 +10,30 @@ class Bag(Thing):
     max_size = 7
     items = {}
 
-    def __init__(self, *items):
+    def __init__(self, items):
+        """
+        :param items (list):
+        :return:
+        """
+        self.put_items_to_bag(items)
+
+    def put_items_to_bag(self, items):
+        """
+        :param items (list):
+        :return:
+        """
         for item in items:
             if self.has_space(item):
-                self.put_to_bag(item)
+                self.put_item_to_bag(item)
 
-    def put_to_bag(self, item):
+    def put_item_to_bag(self, item):
         if self.has_space(item):
             self.items.update({item.name: item})
             return True
         else:
             return False
 
-    def get_from_bag(self, name):
+    def get_item_from_bag(self, name):
         if self.has_item(name):
             item = self.items.get(name)
             del self.items[name]

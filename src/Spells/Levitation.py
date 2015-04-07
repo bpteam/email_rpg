@@ -1,11 +1,12 @@
-__author__ = 'iEC'
+__author__ = 'Evgeny Pyanykh'
+__email__ = 'bpteam22@gmail.com'
 
-import src.Spells.Spell as Spell
+from src.Spells.Spell import Spell
 
 
 class Levitation(Spell):
     manna_cost = 1
 
-    def cast(self, caster):
+    def cast(self, caster, target):
         caster.manna -= self.manna_cost
         return True

@@ -1,6 +1,7 @@
-__author__ = 'iEC'
+__author__ = 'Evgeny Pyanykh'
+__email__ = 'bpteam22@gmail.com'
 
-import src.Inventory.Thing as Thing
+from src.Inventory.Thing import Thing
 
 
 class Flask(Thing):

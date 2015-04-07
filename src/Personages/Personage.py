@@ -1,6 +1,7 @@
-__author__ = 'iEC'
+__author__ = 'Evgeny Pyanykh'
+__email__ = 'bpteam22@gmail.com'
 
-import src.Inventory.Bag as Bag
+from src.Inventory.Bag import Bag
 from abc import ABCMeta, abstractproperty
 from random import randint
 
@@ -15,7 +16,6 @@ class Personage(object):
     health = 1
     skill = 1
     skill_effect = 0  # skills buff or debuff
-    manna = 99
     bag = Bag
 
     def __init__(self, **attributes):
@@ -36,3 +36,6 @@ class Personage(object):
 
     def is_dead(self):
         return self.health <= 0
+
+    def exposure_of_spell(self, caster, spell):
+        return spell.cast(caster, self)

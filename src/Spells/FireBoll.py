@@ -1,6 +1,7 @@
-__author__ = 'iEC'
+__author__ = 'Evgeny Pyanykh'
+__email__ = 'bpteam22@gmail.com'
 
-import src.Spells.Spell as Spell
+from src.Spells.Spell import Spell
 
 
 class FireBoll(Spell):
