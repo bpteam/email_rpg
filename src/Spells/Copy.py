@@ -2,6 +2,7 @@ __author__ = 'Evgeny Pyanykh'
 __email__ = 'bpteam22@gmail.com'
 
 from src.Spells.Spell import Spell
+from src.Personages.PersonageCopy import PersonageCopy
 
 
 class Copy(Spell):
@@ -14,7 +15,4 @@ class Copy(Spell):
         :return:
         """
         caster.manna -= self.manna_cost
-        enemy_copy = Copy
-        enemy_copy.health = target.health
-        enemy_copy.skill = target.skill
-        return enemy_copy
+        return PersonageCopy({'health': target.health, 'skill': target.skill})
