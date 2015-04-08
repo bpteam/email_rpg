@@ -4,8 +4,7 @@ __email__ = 'bpteam22@gmail.com'
 from abc import ABCMeta, abstractproperty  # , abstractmethod
 
 
-class Thing(object):
-    __metaclass__ = ABCMeta
+class Thing(metaclass=ABCMeta):
 
     @abstractproperty
     def name(self):

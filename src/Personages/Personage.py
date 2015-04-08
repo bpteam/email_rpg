@@ -3,11 +3,10 @@ __email__ = 'bpteam22@gmail.com'
 
 from src.Inventory.Bag import Bag
 from abc import ABCMeta, abstractproperty
-from random import randint
+from src.Game.Dice import Dice
 
 
-class Personage(object):
-    __metaclass__ = ABCMeta
+class Personage(metaclass=ABCMeta):
 
     @abstractproperty
     def name(self):
@@ -16,6 +15,7 @@ class Personage(object):
     health = 1
     skill = 1
     skill_effect = 0  # skills buff or debuff
+    damage = 2
     bag = Bag
 
     def __init__(self, **attributes):
@@ -23,7 +23,7 @@ class Personage(object):
             self.__setattr__(self, name, attributes.get(name))
 
     def get_attack(self):
-        return self.skill + randint(2, 12) + self.skill_effect
+        return self.skill + Dice.throw(2) + self.skill_effect
 
     def add_damage(self, damage):
         self.health -= damage

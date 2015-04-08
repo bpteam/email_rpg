@@ -1,17 +1,10 @@
 __author__ = 'Evgeny Pyanykh'
 __email__ = 'bpteam22@gmail.com'
 
-from src.Personages.Hero import Hero
-from src.Game.Dice import Dice
-from src.Inventory.Gold import Gold
-from src.Inventory.Flask import Flask
+from abc import ABCMeta, abstractproperty, abstractmethod
 
 
-class Game(object):
-    add_skill = 12
-    add_health = 6
-    add_luck = 6
-    hero = Hero()
+class Game(metaclass=ABCMeta):
     current_paragraph = 1
     text = ''
 
@@ -21,12 +14,9 @@ class Game(object):
         else:
             self.scene(save)
 
+    @abstractmethod
     def create(self):
-        self.hero.max_health = Dice.throw(2) + Game.add_health
-        self.hero.health = self.hero.max_health
-        self.hero.luck = Dice.throw() + Game.add_luck
-        self.hero.skill = Dice.throw() + Game.add_skill
-        self.hero.bag.put_items_to_bag([Gold({'count': 15}), Flask])
+        pass
 
     def scene(self, **parts):
         pass
@@ -34,5 +24,6 @@ class Game(object):
     def redirect(self, paragraph):  # авто перенаправление пользователя на другой параграф
         pass
 
-    def fight(self, allies, enemies):
-        pass
+    def add_text(self, text):
+        self.text += text
+

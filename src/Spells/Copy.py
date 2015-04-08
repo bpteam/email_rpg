@@ -11,8 +11,8 @@ class Copy(Spell):
     def cast(self, caster, target):
         """
         :param caster (Wizard):
-        :param target (Wizard):
-        :return:
+        :param target (Personage):
+        :return (PersonageCopy):
         """
         caster.manna -= self.manna_cost
         return PersonageCopy({'health': target.health, 'skill': target.skill})

@@ -6,5 +6,5 @@ from src.Inventory.Sword import Sword
 
 
 class Warrior(Personage):
-    Weapon = Sword()
+    Weapon = Sword
     name = 'Воин'
