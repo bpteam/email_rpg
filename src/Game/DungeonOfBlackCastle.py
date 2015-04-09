@@ -22,32 +22,46 @@ class DungeonOfBlackCastle(Game):
         self.hero.bag.put_items_to_bag([Gold({'count': 15}), Flask])
 
     @staticmethod
-    def fight(allies, enemies):
+    def fight(allies, enemies, max_turn=0):
         """
-        :param allies (list):
-        :param enemies (list):
+        :param allies {}:
+        :param enemies {}:
         :return:
         """
         from collections import OrderedDict
-        group_allies = {}
-        group_enemies = {}
+        alive_allies = set()
+        alive_enemies = set()
         for ally in allies:
-            group_allies.update({ally.name: ally})
+                alive_allies.add(ally.name)
         for enemy in enemies:
-            group_enemies.update({enemy.name: enemy})
+                alive_enemies.add(enemy.name)
 
-        while group_allies and group_enemies:
-            fight_units = group_allies.copy()
-            fight_units.update(group_enemies)
-            for unit in fight_units.keys():
-                fight_units.update({unit: group_enemies.get(unit).get_attack()})
+        complete_turn = 0
+        while alive_allies and alive_enemies:
+            fight_units = {}
+            for ally in allies:
+                fight_units.update({ally.name: ally.get_attack()})
+            for enemy in enemies:
+                fight_units.update({enemy.name: enemy.get_attack()})
             fight_units = OrderedDict(sorted(fight_units.items(), key=lambda t: t[1], reverse=True))
+
             for attack_unit_name in list(fight_units.keys()):
-                attack_unit = fight_units.get(attack_unit_name)
-                if attack_unit_name in group_allies.keys():
-                    target_unit_name = list(group_enemies.keys())[0]
+                attack_unit_skill = fight_units.get(attack_unit_name)
+                if attack_unit_name in alive_allies:
+                    target_unit_name = alive_enemies[0]
                 else:
-                    target_unit_name = list(group_allies.keys())[0]
+                    target_unit_name = alive_allies[0]
                 target_unit = fight_units.get(target_unit_name)
-                if attack_unit > target_unit:
-                    group_enemies.get(target_unit_name).add_damage(group_allies.get(attack_unit_name).damage)
+                target_unit_skill = fight_units.get(target_unit_name)
+                if attack_unit_skill > target_unit_skill:
+                    target_unit.add_damage(fight_units.get(attack_unit_name).damage)
+                    if target_unit.is_dead():
+                        if target_unit_name in alive_allies:
+                            alive_allies -= {target_unit_name}
+                        else:
+                            alive_enemies -= {target_unit_name}
+                        break
+
+            complete_turn += 1
+            if max_turn < complete_turn:
+                break
