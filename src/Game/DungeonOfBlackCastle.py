@@ -51,7 +51,7 @@ class DungeonOfBlackCastle(Game):
                     target_unit_name = alive_enemies[0]
                 else:
                     target_unit_name = alive_allies[0]
-                target_unit = fight_units.get(target_unit_name)
+                target_unit = fight_units.get(target_unit_name)  # todo fix me wrong data, need Presonage, get integer
                 target_unit_skill = fight_units.get(target_unit_name)
                 if attack_unit_skill > target_unit_skill:
                     target_unit.add_damage(fight_units.get(attack_unit_name).damage)
