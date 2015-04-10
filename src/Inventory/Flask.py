@@ -1,5 +1,7 @@
 __author__ = 'Evgeny Pyanykh'
 __email__ = 'bpteam22@gmail.com'
+__credits__ = ["Evgeny Pyanykh", "Roman Evdokimov"]
+__license__ = "GPL"
 
 from src.Inventory.Thing import Thing
 
@@ -15,7 +17,4 @@ class Flask(Thing):
             personage.add_health(2)
 
     def fill(self, count=2):
-        if (self.count + count) > self.max_stack:
-            self.count = self.max_stack
-        else:
-            self.count += count
+        self.stack_item(count)

@@ -1,5 +1,7 @@
 __author__ = 'Evgeny Pyanykh'
 __email__ = 'bpteam22@gmail.com'
+__credits__ = ["Evgeny Pyanykh", "Roman Evdokimov"]
+__license__ = "GPL"
 
 from src.Game.Game import Game
 from src.Personages.Hero import Hero
@@ -29,12 +31,15 @@ class DungeonOfBlackCastle(Game):
         :return:
         """
         from collections import OrderedDict
+        units = {}
         alive_allies = set()
         alive_enemies = set()
         for ally in allies:
-                alive_allies.add(ally.name)
+            alive_allies.add(ally.name)
+            units.update({ally.name: ally})
         for enemy in enemies:
-                alive_enemies.add(enemy.name)
+            alive_enemies.add(enemy.name)
+            units.update({enemy.name: enemy})
 
         complete_turn = 0
         while alive_allies and alive_enemies:
@@ -51,7 +56,7 @@ class DungeonOfBlackCastle(Game):
                     target_unit_name = alive_enemies[0]
                 else:
                     target_unit_name = alive_allies[0]
-                target_unit = fight_units.get(target_unit_name)  # todo fix me wrong data, need Presonage, get integer
+                target_unit = units.get(target_unit_name)
                 target_unit_skill = fight_units.get(target_unit_name)
                 if attack_unit_skill > target_unit_skill:
                     target_unit.add_damage(fight_units.get(attack_unit_name).damage)

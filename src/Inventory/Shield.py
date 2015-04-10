@@ -6,6 +6,6 @@ __license__ = "GPL"
 from src.Inventory.Thing import Thing
 
 
-class Sword(Thing):
-    name = 'Меч'
+class Shield(Thing):
+    name = 'Щит'
     skill_effect = 0

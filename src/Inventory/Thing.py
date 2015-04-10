@@ -1,5 +1,7 @@
 __author__ = 'Evgeny Pyanykh'
 __email__ = 'bpteam22@gmail.com'
+__credits__ = ["Evgeny Pyanykh", "Roman Evdokimov"]
+__license__ = "GPL"
 
 from abc import ABCMeta, abstractproperty  # , abstractmethod
 
@@ -29,3 +31,12 @@ class Thing(metaclass=ABCMeta):
 
     def can_use(self, need=1):
         return self.count >= need
+
+    def stack_item(self, count):
+        free = 0
+        if (self.count + count) > self.max_stack:
+            free = (self.count + count) - self.max_stack
+            self.count = self.max_stack
+        else:
+            self.count += count
+        return free
