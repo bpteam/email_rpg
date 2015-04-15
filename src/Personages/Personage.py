@@ -3,9 +3,9 @@ __email__ = 'bpteam22@gmail.com'
 __credits__ = ["Evgeny Pyanykh", "Roman Evdokimov"]
 __license__ = "GPL"
 
-from src.Inventory.Bag import Bag
+from Inventory.Bag import Bag
 from abc import ABCMeta, abstractproperty
-from src.Game.Dice import Dice
+from Game.Dice import Dice
 
 
 class Personage(metaclass=ABCMeta):

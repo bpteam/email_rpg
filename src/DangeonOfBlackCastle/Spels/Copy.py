@@ -3,8 +3,8 @@ __email__ = 'bpteam22@gmail.com'
 __credits__ = ["Evgeny Pyanykh", "Roman Evdokimov"]
 __license__ = "GPL"
 
-from src.Spells.Spell import Spell
-from src.Personages.PersonageCopy import PersonageCopy
+from Spells.Spell import Spell
+from DangeonOfBlackCastle.Personages import PersonageCopy
 
 
 class Copy(Spell):

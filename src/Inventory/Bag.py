@@ -3,7 +3,7 @@ __email__ = 'bpteam22@gmail.com'
 __credits__ = ["Evgeny Pyanykh", "Roman Evdokimov"]
 __license__ = "GPL"
 
-from src.Inventory.Thing import Thing
+from Inventory.Thing import Thing
 
 
 class Bag(Thing):
@@ -12,7 +12,7 @@ class Bag(Thing):
     max_size = 7
     items = []
 
-    def __init__(self, items):
+    def __init__(self, *items):
         """
         :param items (list):
         :return:

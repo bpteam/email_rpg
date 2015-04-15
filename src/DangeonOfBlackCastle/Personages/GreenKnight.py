@@ -3,8 +3,8 @@ __email__ = 'bpteam22@gmail.com'
 __credits__ = ["Evgeny Pyanykh", "Roman Evdokimov"]
 __license__ = "GPL"
 
-from src.Personages.Warrior import Warrior
-from src.Personages.Wizard import Wizard
+from Personages.Warrior import Warrior
+from Personages.Wizard import Wizard
 
 
 class GreenKnight(Wizard, Warrior):

@@ -3,9 +3,9 @@ __email__ = 'bpteam22@gmail.com'
 __credits__ = ["Evgeny Pyanykh", "Roman Evdokimov"]
 __license__ = "GPL"
 
-from src.Personages.Personage import Personage
-from src.Inventory.Sword import Sword
-from src.Inventory.Shield import Shield
+from Personages.Personage import Personage
+from Inventory.Sword import Sword
+from Inventory.Shield import Shield
 
 
 class Warrior(Personage):
