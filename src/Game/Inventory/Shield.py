@@ -3,9 +3,9 @@ __email__ = 'bpteam22@gmail.com'
 __credits__ = ["Evgeny Pyanykh", "Roman Evdokimov"]
 __license__ = "GPL"
 
-from Inventory.Thing import Thing
+from Game.Inventory import Thing
 
 
-class Sword(Thing):
-    name = 'Меч'
+class Shield(Thing):
+    name = 'Щит'
     skill_effect = 0

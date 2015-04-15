@@ -3,8 +3,9 @@ __email__ = 'bpteam22@gmail.com'
 __credits__ = ["Evgeny Pyanykh", "Roman Evdokimov"]
 __license__ = "GPL"
 
-from Personages.Warrior import Warrior
+from Game.Inventory import Thing
 
 
-class PersonageCopy(Warrior):
-    name = 'Копия'
+class Sword(Thing):
+    name = 'Меч'
+    skill_effect = 0

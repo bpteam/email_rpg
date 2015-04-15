@@ -3,10 +3,10 @@ __email__ = 'bpteam22@gmail.com'
 __credits__ = ["Evgeny Pyanykh", "Roman Evdokimov"]
 __license__ = "GPL"
 
-from Spells.Spell import Spell
+from Game.Spells import Spell
 
 
-class Illusion(Spell):
+class Swim(Spell):
     manna_cost = 1
 
     def cast(self, caster, target):

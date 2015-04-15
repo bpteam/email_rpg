@@ -4,26 +4,29 @@ __credits__ = ["Evgeny Pyanykh", "Roman Evdokimov"]
 __license__ = "GPL"
 
 from Game.Game import Game
-from Personages.Hero import Hero
-from Inventory.Gold import Gold
-from DangeonOfBlackCastle.Inventory import Flask
-from Game.Dice import Dice
+from Game.Personages.Hero import Hero
+from Game.Inventory.Gold import Gold
+from DungeonOfBlackCastle.Inventory import Flask
+from Game.Game.Dice import Dice
 
 
-class DungeonOfBlackCastle(Game):
+class DungeonsOfBlackCastle(Game):
     add_skill = 12
     add_health = 6
     add_luck = 6
     start_scene = 1
     hero = Hero
+    name = 'Подземелья темного замка'
 
-    def create(self):
-        self.hero.max_health = Dice.throw(2) + self.add_health
-        self.hero.health = self.hero.max_health
-        self.hero.luck = Dice.throw() + self.add_luck
-        self.hero.skill = Dice.throw() + self.add_skill
-        self.hero.bag.put_items_to_bag([Gold({'count': 15}), Flask])
-        self.scene(self.start_scene)
+    def create():
+        game = DungeonsOfBlackCastle
+        game.hero.max_health = Dice.throw(2) + game.add_health
+        game.hero.health = game.hero.max_health
+        game.hero.luck = Dice.throw() + game.add_luck
+        game.hero.skill = Dice.throw() + game.add_skill
+        game.hero.bag.put_items_to_bag([Gold({'count': 15}), Flask])
+        game.scene(game.start_scene)
+        return game
 
     @staticmethod
     def fight(allies, enemies, max_turn=0):

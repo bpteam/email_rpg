@@ -3,7 +3,7 @@ __email__ = 'bpteam22@gmail.com'
 __credits__ = ["Evgeny Pyanykh", "Roman Evdokimov"]
 __license__ = "GPL"
 
-from Personages.Personage import Personage
+from Game.Personages import Personage
 
 
 class Wizard(Personage):

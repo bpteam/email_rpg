@@ -3,13 +3,13 @@ __email__ = 'bpteam22@gmail.com'
 __credits__ = ["Evgeny Pyanykh", "Roman Evdokimov"]
 __license__ = "GPL"
 
-from Spells.Spell import Spell
+from Game.Spells import Spell
 
 
-class Weakness(Spell):
+class Power(Spell):
     manna_cost = 1
 
     def cast(self, caster, target):
         caster.manna -= self.manna_cost
-        target.skill_effect += -2
+        target.skill_effect += 2
         return True

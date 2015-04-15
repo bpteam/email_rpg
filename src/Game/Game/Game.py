@@ -4,6 +4,7 @@ __credits__ = ["Evgeny Pyanykh", "Roman Evdokimov"]
 __license__ = "GPL"
 
 from abc import ABCMeta, abstractproperty, abstractmethod
+from Game.DB import DB
 
 
 class Game(metaclass=ABCMeta):
@@ -12,26 +13,27 @@ class Game(metaclass=ABCMeta):
     history = []
     user = 'user@my.game'
 
-    @abstractproperty
     def start_scene(self):
+        self.scene(1)
+    @abstractproperty
+    def name(self):
         pass
 
-    def __init__(self, data=None):
+    def __init__(self, **data):
         """
         :param data:
         :return:
         """
-        if not data:
-            self.create()
-        else:
-            self.scene(data)
+        self.user = data['user']
+        self.create()
+        self.start_scene()
 
-    @abstractmethod
-    def create(self):
+    @staticmethod
+    def create():
         pass
 
     @abstractmethod
-    def scene(self, data):
+    def scene(self, paragraph, answer=False):
         pass
 
     def add_text(self, text):
