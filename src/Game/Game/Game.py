@@ -8,13 +8,15 @@ from Game.DB import DB
 
 
 class Game(metaclass=ABCMeta):
-    current_paragraph = 1
+    current_scene = 1
     text = ''
     history = []
     user = 'user@my.game'
+    end_game = False
 
     def start_scene(self):
         self.scene(1)
+
     @abstractproperty
     def name(self):
         pass
@@ -46,3 +48,6 @@ class Game(metaclass=ABCMeta):
     @abstractmethod
     def end(self):
         pass
+
+    def is_end(self):
+        return self.end_game

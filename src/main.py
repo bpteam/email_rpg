@@ -13,3 +13,6 @@ if not storage.game_exist(user):
     game = DungeonsOfBlackCastle.create()
 else:
     game = storage.load(user)
+
+while not game.is_end():
+    game.scene(game.current_scene)

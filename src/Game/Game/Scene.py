@@ -4,20 +4,24 @@ __credits__ = ["Evgeny Pyanykh", "Roman Evdokimov"]
 __license__ = "GPL"
 
 from abc import ABCMeta, abstractmethod
+from Game.Inventory.Loot import Loot
 
 
 class Scene(metaclass=ABCMeta):
-    current = 1
+    number = 1
     commands = {"to the left": 425, "to the right": 14, "forward": 15}
+    loot = Loot
+    NPC = []
+    default_commands = {
+        'help': 'show_help',
+        'drink water': 'drink_water',
+        'put .+': 'put_item',
+        'drop .+': 'drop_item'
+    }
 
-    @abstractmethod
-    def __init__(self, previous=1, command=False):
+    def __init__(self, previous, command=False):
         pass
 
     @abstractmethod
-    def load_commands(self):
-        pass
-
-    @abstractmethod
-    def build(self):
+    def run(self):
         pass

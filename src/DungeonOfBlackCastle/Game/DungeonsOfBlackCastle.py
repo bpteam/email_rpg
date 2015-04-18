@@ -18,6 +18,7 @@ class DungeonsOfBlackCastle(Game):
     hero = Hero
     name = 'Подземелья темного замка'
 
+    @staticmethod
     def create():
         game = DungeonsOfBlackCastle
         game.hero.max_health = Dice.throw(2) + game.add_health
@@ -25,7 +26,7 @@ class DungeonsOfBlackCastle(Game):
         game.hero.luck = Dice.throw() + game.add_luck
         game.hero.skill = Dice.throw() + game.add_skill
         game.hero.bag.put_items_to_bag([Gold({'count': 15}), Flask])
-        game.scene(game.start_scene)
+        game.current_scene = game.start_scene
         return game
 
     @staticmethod
