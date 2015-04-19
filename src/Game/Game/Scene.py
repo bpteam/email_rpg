@@ -5,22 +5,19 @@ __license__ = "GPL"
 
 from abc import ABCMeta, abstractmethod
 from Game.Inventory.Loot import Loot
+from Game.Game.MessageText import MessageText
 
 
 class Scene(metaclass=ABCMeta):
     number = 1
+    need_save = False
     commands = {"to the left": 425, "to the right": 14, "forward": 15}
-    loot = Loot
+    loot = Loot()
     NPC = []
-    default_commands = {
-        'help': 'show_help',
-        'drink water': 'drink_water',
-        'put .+': 'put_item',
-        'drop .+': 'drop_item'
-    }
+    command = False
 
-    def __init__(self, previous, command=False):
-        pass
+    def __init__(self, command=False):
+        self.command = command
 
     @abstractmethod
     def run(self):

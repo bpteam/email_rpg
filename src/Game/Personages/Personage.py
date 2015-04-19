@@ -5,8 +5,8 @@ __license__ = "GPL"
 
 from abc import ABCMeta, abstractproperty
 
-from Game.Inventory import Bag
-from Game.Game import Dice
+from Game.Inventory.Bag import Bag
+from Game.Game.Dice import Dice
 
 
 class Personage(metaclass=ABCMeta):
@@ -19,7 +19,7 @@ class Personage(metaclass=ABCMeta):
     skill = 1
     skill_effect = 0  # skills buff or debuff
     damage = 2
-    bag = Bag
+    bag = Bag()
 
     def __init__(self, **attributes):
         for name in attributes.keys():

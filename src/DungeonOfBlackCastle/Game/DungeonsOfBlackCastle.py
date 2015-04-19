@@ -3,11 +3,13 @@ __email__ = 'bpteam22@gmail.com'
 __credits__ = ["Evgeny Pyanykh", "Roman Evdokimov"]
 __license__ = "GPL"
 
-from Game.Game import Game
+from Game.Game.Game import Game
 from Game.Personages.Hero import Hero
 from Game.Inventory.Gold import Gold
 from DungeonOfBlackCastle.Inventory import Flask
 from Game.Game.Dice import Dice
+from Game.Game.DB import DB
+from Game.Game.MessageText import MessageText
 
 
 class DungeonsOfBlackCastle(Game):
@@ -15,19 +17,54 @@ class DungeonsOfBlackCastle(Game):
     add_health = 6
     add_luck = 6
     start_scene = 1
-    hero = Hero
+    hero = Hero()
     name = 'Подземелья темного замка'
+    db = DB('DungeonsOfBlackCastle', 'email_rpg')
+    global_commands = {
+        'помощь': 'show_help',
+        'выпить из фляги': 'drink_water',
+        'положить .+': 'put_item',
+        'выложить .+': 'drop_item'
+    }
+
+    def create(self):
+        self.hero.max_health = Dice.throw(2) + self.add_health
+        self.hero.health = self.hero.max_health
+        self.hero.luck = Dice.throw() + self.add_luck
+        self.hero.skill = Dice.throw() + self.add_skill
+        self.hero.bag.put_items_to_bag([Gold({'count': 15}), Flask])
+        self.current_scene = self.scene(self.start_scene)
+
+    def save(self):
+        data = {
+            'user': self.user,
+            'current_scene': self.current_scene,
+            'previous_scene': self.previous_scene,
+            'save_scenes': self.save_scenes,
+            'hero': self.hero
+        }
+        self.db.save(data)
 
     @staticmethod
-    def create():
-        game = DungeonsOfBlackCastle
-        game.hero.max_health = Dice.throw(2) + game.add_health
-        game.hero.health = game.hero.max_health
-        game.hero.luck = Dice.throw() + game.add_luck
-        game.hero.skill = Dice.throw() + game.add_skill
-        game.hero.bag.put_items_to_bag([Gold({'count': 15}), Flask])
-        game.current_scene = game.start_scene
-        return game
+    def show_help():
+        MessageText.add_text('help about game\n')
+
+    def drink_water(self):
+        flask = self.hero.bag.get_item_from_bag('фляга')
+        if flask:
+            flask.drink(self.hero)
+            self.hero.bag.put_item_to_bag(flask)
+        else:
+            MessageText.add_text('Нет фляги\n')
+
+    def put_item(self, name):
+        item = self.current_scene.loot.get_item_from_bag(name)
+        if item:
+            self.hero.bag.put_item_to_bag(item)
+            if item.count:
+                self.current_scene.loot.put_item_to_bag(item)
+        else:
+            MessageText.add_text('Вещь не найдена\n')
 
     @staticmethod
     def fight(allies, enemies, max_turn=0):
@@ -65,8 +102,10 @@ class DungeonsOfBlackCastle(Game):
                 target_unit = units.get(target_unit_name)
                 target_unit_skill = fight_units.get(target_unit_name)
                 if attack_unit_skill > target_unit_skill:
+                    MessageText.add_text('{0} ранит {1}\n'.format(attack_unit_name, target_unit_name))
                     target_unit.add_damage(fight_units.get(attack_unit_name).damage)
                     if target_unit.is_dead():
+                        MessageText.add_text('{0} погибает\n'.format(target_unit_name))
                         if target_unit_name in alive_allies:
                             alive_allies -= {target_unit_name}
                         else:

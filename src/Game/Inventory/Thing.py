@@ -17,7 +17,7 @@ class Thing(metaclass=ABCMeta):
 
     def __init__(self, **attributes):
         for name in attributes.keys():
-            self.__setattr__(self, name, attributes.get(name))
+            self.__setattr__(name, attributes.get(name))
 
     def get_size(self):
         return self.size

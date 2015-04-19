@@ -4,7 +4,7 @@ __credits__ = ["Evgeny Pyanykh", "Roman Evdokimov"]
 __license__ = "GPL"
 
 from Game.Spells import Spell
-from DungeonOfBlackCastle.Personages import PersonageCopy
+from DungeonOfBlackCastle.Personages.PersonageCopy import PersonageCopy
 
 
 class Copy(Spell):
