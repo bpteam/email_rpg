@@ -20,4 +20,5 @@ command = False
 while not game.is_end():
     game.scene(game.current_scene.number, command)
     MessageText.show_text()
-    command = input('ваш ответ:')
+    if not game.is_end():
+        command = input('ваш ответ:')

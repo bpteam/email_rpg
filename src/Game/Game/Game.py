@@ -64,7 +64,9 @@ class Game(metaclass=ABCMeta):
         elif command_exist and command_executable:
             self.current_scene.exec(self.current_scene.command)
         else:
-            self.current_scene.run()
+            result = self.current_scene.run()
+            if bool(result):
+                self.scene(result)
 
     def global_run(self, command):
         for glob_command, method in self.global_commands:

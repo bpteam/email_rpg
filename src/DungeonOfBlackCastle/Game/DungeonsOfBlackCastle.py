@@ -113,5 +113,5 @@ class DungeonsOfBlackCastle(Game):
                         break
 
             complete_turn += 1
-            if max_turn < complete_turn:
+            if max_turn < complete_turn and bool(max_turn):
                 break
