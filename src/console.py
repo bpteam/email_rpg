@@ -16,8 +16,8 @@ if not game.db.game_exist(user):
 else:
     game.load()
 
-answer = False
+command = False
 while not game.is_end():
-    game.scene(game.current_scene.number, answer)
+    game.scene(game.current_scene.number, command)
     MessageText.show_text()
-    answer = input('ваш ответ:')
+    command = input('ваш ответ:')

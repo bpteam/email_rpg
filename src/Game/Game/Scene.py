@@ -5,7 +5,7 @@ __license__ = "GPL"
 
 from abc import ABCMeta, abstractmethod
 from Game.Inventory.Loot import Loot
-from Game.Game.MessageText import MessageText
+import re
 
 
 class Scene(metaclass=ABCMeta):
@@ -15,6 +15,7 @@ class Scene(metaclass=ABCMeta):
     loot = Loot()
     NPC = []
     command = False
+    hero = None
 
     def __init__(self, command=False):
         self.command = command
@@ -22,3 +23,37 @@ class Scene(metaclass=ABCMeta):
     @abstractmethod
     def run(self):
         pass
+
+    def exec(self, command):
+        for name_command, method in self.commands:
+            regexp = re.compile(name_command)
+            match = regexp.search(command)
+            if bool(match.group()):
+                if bool(match.group('arg')):
+                    eval('self.{0}'.format(method))(match.group('arg'))
+                else:
+                    eval('self.{0}'.format(method))()
+                return True
+        return False
+
+    def command_exist(self, command):
+        for name_command, method in self.commands:
+            regexp = re.compile(name_command)
+            match = regexp.search(command)
+            if bool(match.group()):
+                return True
+        return False
+
+    def get_command_action(self, command):
+        for name_command, method in self.commands:
+            regexp = re.compile(name_command)
+            match = regexp.search(command)
+            if bool(match.group()):
+                return match.group()
+        return False
+
+    def command_executable(self, command):
+        action = self.get_command_action(command)
+        if bool(action):
+            return isinstance(action, str)
+        return False
