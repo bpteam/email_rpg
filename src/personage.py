@@ -134,6 +134,7 @@ if __name__ == "__main__":
 	print("%s:\n мастерство - %d,\n выносливость - %d,\n удача - %d" % (protagonist.name,  
 	                            protagonist.skill, protagonist.damage, protagonist.fortune))
 	print(protagonist.spell)
+	print(protagonist.gold)
 	print(protagonist.profit(3))
 	protagonist.bag_to_place("перо аиста")
 	print(protagonist.bag)
