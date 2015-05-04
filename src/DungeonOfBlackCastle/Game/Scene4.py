@@ -3,13 +3,13 @@ __email__ = 'bpteam22@gmail.com'
 __credits__ = ["Evgeny Pyanykh", "Roman Evdokimov"]
 __license__ = "GPL"
 
-from Game.Game.Scene import Scene
+from DungeonOfBlackCastle.Game.MasterScene import MasterScene
 from Game.Game.MessageText import MessageText
 from DungeonOfBlackCastle.Spels.Levitation import Levitation
 from DungeonOfBlackCastle.Spels.Swim import Swim
 
 
-class Scene4(Scene):
+class Scene4(MasterScene):
     commands = {'к зданию в центре двора': 416, 'плавания': 372, 'левитации': 103, 'плавания и поплыть по течению реки': 311}
 
     def run(self):
@@ -21,5 +21,5 @@ class Scene4(Scene):
             if self.hero.has_manna_to_spell(Swim()):
                 MessageText.add_text('либо воспользоваться заклятием [плавания и поплыть по течению реки], чтобы проникнуть в подземелье замка.')
         else:
-            MessageText.add_text('Теперь вы можете вернуться обратно и направиться к зданию в центре двора')
+            MessageText.add_text('Теперь вы можете вернуться обратно и направиться [к зданию в центре двора]')
             return self.commands.get('к зданию в центре двора')

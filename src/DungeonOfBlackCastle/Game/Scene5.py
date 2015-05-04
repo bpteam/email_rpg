@@ -3,11 +3,11 @@ __email__ = 'bpteam22@gmail.com'
 __credits__ = ["Evgeny Pyanykh", "Roman Evdokimov"]
 __license__ = "GPL"
 
-from Game.Game.Scene import Scene
+from DungeonOfBlackCastle.Game.MasterScene import MasterScene
 from Game.Game.MessageText import MessageText
 
 
-class Scene5(Scene):
+class Scene5(MasterScene):
     commands = {'к острову': 216, 'на другой берег': 517}
 
     def run(self):

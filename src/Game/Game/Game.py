@@ -53,22 +53,20 @@ class Game(metaclass=ABCMeta):
         else:
             self.current_scene = eval('Scene%d' % paragraph)()
         self.current_scene.hero = self.hero
-        if self.global_run(command):
+        if self.global_command(command):
             self.current_scene.command = False
         else:
             self.current_scene.command = command
         command_exist = self.current_scene.command_exists(self.current_scene.command)
         command_executable = self.current_scene.command_executable(self.current_scene.command)
-        if command_exist and not command_executable:
-            self.scene(self.current_scene.commands.get(self.current_scene.command))
-        elif command_exist and command_executable:
+        if command_exist and command_executable:
             self.current_scene.exec(self.current_scene.command)
         else:
             result = self.current_scene.run()
             if bool(result):
                 self.scene(result)
 
-    def global_run(self, command):
+    def global_command(self, command):
         for glob_command, method in self.global_commands:
             regexp = re.compile(glob_command)
             match = regexp.search(command)
