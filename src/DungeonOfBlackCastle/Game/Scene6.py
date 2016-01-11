@@ -3,14 +3,14 @@ __email__ = 'bpteam22@gmail.com'
 __credits__ = ["Evgeny Pyanykh", "Roman Evdokimov"]
 __license__ = "GPL"
 
-from DungeonOfBlackCastle.Game.MasterScene import MasterScene
-from DungeonOfBlackCastle.Game.DungeonsOfBlackCastle import DungeonsOfBlackCastle
-from Game.Game.MessageText import MessageText
-from Game.Personages.Warrior import Warrior
-from Game.Inventory.Bag import Bag
-from Game.Inventory.Gold import Gold
-from DungeonOfBlackCastle.Spels.Copy import Copy
-from DungeonOfBlackCastle.Personages.PersonageCopy import PersonageCopy
+from src.DungeonOfBlackCastle.Game.MasterScene import MasterScene
+from src.DungeonOfBlackCastle.Game.DungeonsOfBlackCastle import DungeonsOfBlackCastle
+from src.Game.Game.MessageText import MessageText
+from src.Game.Personages.Warrior import Warrior
+from src.Game.Inventory.Bag import Bag
+from src.Game.Inventory.Gold import Gold
+from src.DungeonOfBlackCastle.Spels.Copy import Copy
+from src.DungeonOfBlackCastle.Personages.PersonageCopy import PersonageCopy
 
 
 class Scene6(MasterScene):

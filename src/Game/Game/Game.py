@@ -4,9 +4,9 @@ __credits__ = ["Evgeny Pyanykh", "Roman Evdokimov"]
 __license__ = "GPL"
 
 from abc import ABCMeta, abstractproperty
-from Game.Personages.Personage import Personage
-from Game.Game.DB import DB
-from Game.Game.MessageText import MessageText
+from src.Game.Personages.Personage import Personage
+from src.Game.Game.DB import DB
+from src.Game.Game.MessageText import MessageText
 import re
 
 

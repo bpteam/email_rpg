@@ -4,7 +4,7 @@ __credits__ = ["Evgeny Pyanykh", "Roman Evdokimov"]
 __license__ = "GPL"
 
 from abc import ABCMeta, abstractmethod
-from Game.Inventory.Loot import Loot
+from src.Game.Inventory.Loot import Loot
 import re
 
 

@@ -3,8 +3,8 @@ __email__ = 'bpteam22@gmail.com'
 __credits__ = ["Evgeny Pyanykh", "Roman Evdokimov"]
 __license__ = "GPL"
 
-from DungeonOfBlackCastle.Game.MasterScene import MasterScene
-from Game.Game.MessageText import MessageText
+from src.DungeonOfBlackCastle.Game.MasterScene import MasterScene
+from src.Game.Game.MessageText import MessageText
 
 
 class Scene3(MasterScene):

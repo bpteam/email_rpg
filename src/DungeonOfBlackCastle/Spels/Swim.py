@@ -3,7 +3,7 @@ __email__ = 'bpteam22@gmail.com'
 __credits__ = ["Evgeny Pyanykh", "Roman Evdokimov"]
 __license__ = "GPL"
 
-from Game.Spells import Spell
+from src.Game.Spells import Spell
 
 
 class Swim(Spell):

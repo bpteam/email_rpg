@@ -5,8 +5,8 @@ __license__ = "GPL"
 
 from abc import ABCMeta, abstractproperty
 
-from Game.Inventory.Bag import Bag
-from Game.Game.Dice import Dice
+from src.Game.Inventory.Bag import Bag
+from src.Game.Game.Dice import Dice
 
 
 class Personage(metaclass=ABCMeta):

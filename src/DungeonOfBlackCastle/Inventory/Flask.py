@@ -3,7 +3,7 @@ __email__ = 'bpteam22@gmail.com'
 __credits__ = ["Evgeny Pyanykh", "Roman Evdokimov"]
 __license__ = "GPL"
 
-from Game.Inventory import Thing
+from src.Game.Inventory import Thing
 
 
 class Flask(Thing):

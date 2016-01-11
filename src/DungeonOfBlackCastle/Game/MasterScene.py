@@ -3,8 +3,8 @@ __email__ = 'bpteam22@gmail.com'
 __credits__ = ["Evgeny Pyanykh", "Roman Evdokimov"]
 __license__ = "GPL"
 
-from Game.Game.Scene import Scene
-from Game.Game.MessageText import MessageText
+from src.Game.Game.Scene import Scene
+from src.Game.Game.MessageText import MessageText
 
 
 class MasterScene(Scene):
